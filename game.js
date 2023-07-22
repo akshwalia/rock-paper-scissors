@@ -13,9 +13,9 @@ function getComputerChoice() {
 
 function getPlayerChoice()
 {
-    let choice=prompt("Type your choice");
-    choice=choice.toLowerCase();
-    return choice;
+    const playerSelection = document.querySelectorAll(img);
+
+    console.log(playerSelection)
 }
 
 function result(comp,play)

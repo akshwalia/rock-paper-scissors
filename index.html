@@ -3,10 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="game.js"> </script>
-    <div>Nothing here for now, everything is in the console.</div>
+    <h1>Rock, Paper, Scissors</h1>
+    
+    <div class="scores">
+        <div class="leftScore">
+            <div class="playerScore">0</div>
+            <p>You</p>
+        </div>
+    
+        <div class="rightScore">
+            <div class="compScore">0</div>
+            <p>Comp</p>
+        </div>
+    </div>
+
+    <div class="options">
+        <div class="rock">
+            <img src="images/rock.jpg" id="1">
+            <p>Rock</p>
+        </div>
+        <div class="scissors">
+            <img src="images/scissors.jpg" id="2">
+            <p>Scissors</p>
+        </div>
+        <div class="paper">
+            <img src="images/paper.jpg" id="3">
+            <p>Paper</p>
+        </div>
+    </div>
+
+    <script src="script.js"> </script>
 </body>
 </html>
