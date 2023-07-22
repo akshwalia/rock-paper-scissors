@@ -1,61 +1,75 @@
+let compcount=0;
+let playercount=0;
+
+const rock=document.getElementById("1");
+const scissors=document.getElementById("2");
+const paper=document.getElementById("3");
+const winlosetext=document.querySelector(".winlosetext");
+const playerScore=document.querySelector(".playerScore");
+const compScore=document.querySelector(".compScore");
+
 function getComputerChoice() {
     let ran = Math.floor(Math.random()*3);
-    let choice;
-    if(ran==0)
-        choice="rock";
-    else if (ran==1)
-        choice="paper";
-    else
-        choice="scissors";
+    const choice = ["rock", "paper", "scissors"];
 
-    return choice;
+    return choice[ran];
 }
 
-function getPlayerChoice()
-{
-    const playerSelection = document.querySelectorAll(img);
-
-    console.log(playerSelection)
+function resetScores() {
+    playercount=0;
+    compcount=0;
+    playerScore.textContent=playercount;
+    compScore.textContent=compcount;
 }
 
-function result(comp,play)
-{
-    if((play=="rock" && comp=="scissors") || (play=="paper" && comp=="rock") || (play=="scisscors" && comp=="paper"))
-        return 1;
-    else if (comp == play)
-        return -1;
-    else 
-        return 0;
-}
-
-function game()
-{
-    let comp;
-    let play;
-    console.log(comp+" "+play);
-    let res,playcount=0,compcount=0;
-
-    while(playcount!==5 || compcount!==5) {
-        comp=getComputerChoice();
-        play=getPlayerChoice();
-        res=result(comp,play);
-        if(res==1){
-            console.log("Yayy! "+play+" beats "+comp);
-            playcount++;
-        }
-        else if(res==0){
-            console.log("Ohh no, "+comp+" beats "+play);
-            compcount++;
-        }
-        else
-            console.log("It's a tie");
+function win(play,comp) {
+    playercount++;
+    playerScore.textContent=playercount;
+    winlosetext.textContent=`Yayy!! ${play} beats ${comp}`;
+    if(playercount==5) {
+        winlosetext.classList.add("modifiedwinlose");
+        winlosetext.textContent="Less goo! You have won the match."
+        resetScores();
     }
-
-    if(playcount==5)
-        console.log("Yay, you have defeated the computer");
-    else 
-        console.log("Sorry, you have lost and you must die");
-    
 }
 
-game();
+function loss(play,comp) {
+    compcount++;
+    compScore.textContent=compcount;
+    winlosetext.textContent=`Ohh noo!! ${comp} beats ${play}`;
+    if(compcount==5)
+    {
+        winlosetext.classList.add("modifiedwinlose");
+        winlosetext.textContent="Oh oh! You have lost. Now go touch some grass."
+        resetScores();
+    }
+}
+
+function draw() {
+    winlosetext.textContent=`It is a draw`;
+}
+
+function game(playerChoice) {
+    winlosetext.classList.remove("modifiedwinlose");
+    console.log(playerChoice);
+    let compChoice=getComputerChoice();
+    console.log(compChoice);
+
+    if((playerChoice=="rock" && compChoice=="scissors") || (playerChoice=="paper" && compChoice=="rock") || (playerChoice=="scissors" && compChoice=="paper"))
+        win(playerChoice,compChoice);
+    else if(playerChoice===compChoice)
+        draw();
+    else 
+        loss(playerChoice,compChoice);
+}
+
+function main() {
+    let playerChoice;
+
+    rock.addEventListener('click', () => game("rock"));
+    scissors.addEventListener('click', () => game("scissors"));
+    paper.addEventListener('click', () => game("paper"));
+
+}
+
+main();
