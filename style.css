@@ -54,6 +54,7 @@ img {
 
 img:hover {
     border-color: gray;
+    cursor: pointer;
 }
 
 .options {
