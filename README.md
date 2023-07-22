@@ -1,1 +1,1 @@
-# rock-paper-scissors
+Sup! I'll be making a rock paper scissor game now, no UI for now will add it later. 
